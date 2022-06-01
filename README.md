@@ -6,13 +6,10 @@ Computer Science 163 Intermediate Data Programming
 
 
 ## Summary of research questions & method
- 1. What music streaming services have had the highest number of active users in the last 3 years?
+1. What music streaming services have had the highest number of active users in the last 3 years?
    1. Description: We are interested in investigating which streaming services have been the most popular in recent years. To do this we will need to compare the total users for each service per year and the average user per month for the last 3 years. When thinking about this problem we might ask, who is on the top of the streaming services? Who is showing the most growth? How big is the difference between these services? What affects these outcomes?
-
-
-   2. Method : To get the active users for a streaming service we will count up the total number of subscribers or accounts and sort them by year in each streaming service. Doing this will allow us to create a graph and look at the trend over time, putting them in the same graph will help to analyze and observe clear comparisons. Since we are comparing the services, there will be data included with the graph such as peak users for that year, average users, and growth from previous years. 
-
-For this process we will be using the column “numberOfSubscribers” and add them up where the date is sorted and filtered by month. After we have a new dataframe with the active subs/users per month corresponding to date, we will be using ggplot or the .plot() function to graph a line for each of the music services. The x axis will be the subs/users and the y axis will be time in months for 3 years. We will be making each line a different color for each music service. We will also be adding a key and a title for visuals and ease of understanding.
+   2. 2. Method : To get the active users for a streaming service we will count up the total number of subscribers or accounts and sort them by year in each streaming service. Doing this will allow us to create a graph and look at the trend over time, putting them in the same graph will help to analyze and observe clear comparisons. Since we are comparing the services, there will be data included with the graph such as peak users for that year, average users, and growth from previous years. 
+   3. For this process we will be using the column “numberOfSubscribers” and add them up where the date is sorted and filtered by month. After we have a new dataframe with the active subs/users per month corresponding to date, we will be using ggplot or the .plot() function to graph a line for each of the music services. The x axis will be the subs/users and the y axis will be time in months for 3 years. We will be making each line a different color for each music service. We will also be adding a key and a title for visuals and ease of understanding.
 
 
 2. In general of songs being released by artists, how has the general duration of songs changed for every year?
@@ -34,7 +31,7 @@ The reasoning behind our interest in the music trends is caused by our curiosity
 ## Datasets
 
 
-Spotify Data
+### Spotify Data
 The following link takes one to the Spotify dataset that we will be using for our proposal and project. The dataset is called “ Spotify Top 100 Songs of 2010-2019”  and it shows data from Spotify from the years 2010 and 2019. The dataset contains 34 different columns ranging from integers, decimals and strings. It also contains 945 rows. The dataset ranges from song names that were in the top 100 for each of the years, duration of songs, genres, year songs were added, artists and much more features for each particular song. The dataset was taken from the Kaggle website and has access to a huge repository of community published data. 
 
 
@@ -42,11 +39,11 @@ https://www.kaggle.com/datasets/muhmores/spotify-top-100-songs-of-20152019
 (folder to more spotify datasets https://drive.google.com/drive/folders/1L2H9-8-jSDk1jR3gPMC3NeRMwkSU7qKV?usp=sharing)
 
 
-Apple Music Data
+### Apple Music Data
 The second dataset we will be working with is the apple music dataset.  Unfortunately we do not currently have access to that dataset for another week since our request stated that. Using this dataset we will be able to answer the research questions such as the active users and duration of the songs. We will be looking at the date column to check for users over the recent year. The main purpose of this dataset is to focus on apple music specifically for which we cant access with the other datasets.
 
 
-Youtube Music Data
+### Youtube Music Data
 Our final dataset will be a youtube music dataset. The dataset consists of 13 columns and 157 rows containing data on specific artists. The columns contain data such as subscribers, duration, and dates of songs which we will be using in answering the research question. This dataset is from the Kaggle website where we found some of the other datasets.
 Youtube Music Data | Kaggle
 
