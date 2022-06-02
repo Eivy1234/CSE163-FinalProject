@@ -17,6 +17,7 @@ def repeatByNum(word, num):
 def main():
     testing("hi")
     repeatByNum("fuck", 3)
+    repeatByNum("ahhh", 5)
 
 if __name__ == '__main__':
     main()
