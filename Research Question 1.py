@@ -36,7 +36,6 @@ def loading_data(data1, data2):
 def plot1(dataset):
     a = dataset.head()
     b = px.line(a, x='title', y='dur')
-    #b.show()
 
 def testing(number):
     double = number * 2
@@ -55,7 +54,7 @@ def spotify_2010_2019_plot(df):
     genre can be easily noticible. This is done by taking the dataframe as a
     parameter.
     """
-    years_2010 = df['year released'] >= 2010
+    years_2010 = df['year released'] >= 2015
     years_2019 = df['year released'] <= 2019
     data = df[years_2010 & years_2019]
     top_genre = data.groupby('year released')['top genre'].max()
