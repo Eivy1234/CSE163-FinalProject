@@ -46,7 +46,30 @@ def repeatByNum(word, num):
     for i in range(1, num + 1):
         print(word)
 
+def spotify_2010_2019_plot(df):
+    """
+    Filters music from years 2010 to 2019 from spotify, then it groups them
+    by year based on the most popular genre of that year. Then, it plots the
+    filtered data into a scatter plot, so the connection between the year and
+    genre can be easily noticible. This is done by taking the dataframe as a
+    parameter.
+    """
+    years_2010 = df['year released'] >= 2010
+    years_2019 = df['year released'] <= 2019
+    data = df[years_2010 & years_2019]
+    top_genre = data.groupby('year released')['top genre'].max()
+    
+    sns.set_style("darkgrid", {"grid.color": ".6", "grid.linestyle": ":"})
+    sns.relplot(data=top_genre, color='purple')
 
+    plt.xticks(rotation=45)
+    plt.title("Most Popular Genre of each year in Spotify from 2010 to 2019")
+    plt.xlabel('Year')
+    plt.ylabel('Genre')
+    plt.savefig('Spotify_Most_Popular_Genre_2010_to_2019', bbox_inches="tight")
+    plt.show()
+    
+    
 #this is just a comment
 def main():
     df1 = pd.read_csv(top_100, on_bad_lines='skip')
@@ -56,6 +79,7 @@ def main():
     plot1(df1)
     a = df1.head()
     px.line(a, x='title', y='dur')
+    spotify_2010_2019_plot(df1)
     # testing(69)
     # repeatByNum("j", 5)
     # repeatByNum("ahhh", 5)
