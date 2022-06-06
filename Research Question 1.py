@@ -8,7 +8,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import plotly.express as px
-%matplotlib inline
 
 top_100 = "/users/eivy/Documents/CSE 163/Group Project /CSE163-FinalProject/Datasets/Spotify/Spotify 2010 - 2019 Top 100.csv"
 data2 = "/users/eivy/Documents/CSE 163/Group Project /CSE163-FinalProject/Datasets/Spotify/data 2.csv"
@@ -36,7 +35,7 @@ def loading_data(data1, data2):
 
 def plot1(dataset):
     a = dataset.head()
-    px.line(a, x='title', y='dur')
+    b = px.line(a, x='title', y='dur')
 
 def testing(number):
     double = number * 2
@@ -55,6 +54,8 @@ def main():
     # loading_data(df1, df2)
     # load_in_data(df1, df2)
     plot1(df1)
+    a = df1.head()
+    px.line(a, x='title', y='dur')
     # testing(69)
     # repeatByNum("j", 5)
     # repeatByNum("ahhh", 5)
