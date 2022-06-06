@@ -36,6 +36,7 @@ def loading_data(data1, data2):
 def plot1(dataset):
     a = dataset.head()
     b = px.line(a, x='title', y='dur')
+    #b.show()
 
 def testing(number):
     double = number * 2
@@ -77,8 +78,6 @@ def main():
     # loading_data(df1, df2)
     # load_in_data(df1, df2)
     plot1(df1)
-    a = df1.head()
-    px.line(a, x='title', y='dur')
     spotify_2010_2019_plot(df1)
     # testing(69)
     # repeatByNum("j", 5)
