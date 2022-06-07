@@ -2,7 +2,6 @@
 # This file contains the code for the visuals of the plots for the first research Question
 # The visuals will be done with plotly and use multiple music streaming datasets
 import numpy as np
-# import csv
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -11,33 +10,6 @@ import plotly.express as px
 
 top_100 = "/users/eivy/Documents/CSE 163/Group Project /CSE163-FinalProject/Datasets/Spotify/Spotify 2010 - 2019 Top 100.csv"
 data2 = "/users/eivy/Documents/CSE 163/Group Project /CSE163-FinalProject/Datasets/Spotify/data 2.csv"
-
-"""
-with open(top_100, 'r') as csv_file:
-    reader = csv.reader(csv_file)
-    for line in reader:
-        print(line)
-"""
-
-def load_in_data(csv_file1, csv_file2):
-
-    # data = pd.read_csv(csv_file1)
-    # data2 = pd.read_csv(csv_file2)
-    merged = csv_file2.merge(csv_file1, left_on="CTIDFP00",
-                              right_on="", how='left')
-    print(merged)
-
-    return merged
-
-
-def loading_data(data1, data2):
-    print(data2)
-
-def plot1(dataset):
-    bounds_data = dataset[(dataset['year released'] >= 2009) & (dataset['year released'] <= 2019)]
-    data = bounds_data.groupby("artist").mean()
-    b = px.line(data, x='year released', y='dur')
-    b.show()
 
 
 def top_fast_genre(df):
@@ -94,6 +66,23 @@ def funnel_graph(df):
     px.funnel(k, x='Track Name', y='Streams', color='Artist')
 
 
+def stream_distributions(df2):
+    streams_artist = df2.groupby("Artist", as_index=False)["Streams"].mean()
+    fig = go.Figure(data=go.Violin(y=streams_artist['Streams'], box_visible=True, line_color='black',
+                               meanline_visible=True, fillcolor='lightseagreen', opacity=0.6,
+                               x0='Violin/Box plot of mean artist streams per '))
+
+    fig.update_layout(yaxis_zeroline=False)
+    fig.show()
+
+
+def testing_violin_graph(df2):
+    streams_artist = df2.groupby("Artist", as_index=False)["Streams"].mean()
+    print('Mean of unique artists streams: ',streams_artist.mean(),
+          'Median unique artist streams: ',streams_artist.median(),
+          'Max artist streams',streams_artist.max())
+
+
 def average_duration_per_year(df):
     """
     Method takes a dataframe and filters the music from the years 2010 through 2019. 
@@ -107,13 +96,14 @@ def average_duration_per_year(df):
     years_2019 = df['year released'] <= 2019
     data = df[years_2010 & years_2019]
     mean_dur = data.groupby('year released', as_index=False)['dur'].mean()
-    
-    fig = px.line(
-        mean_dur, x='year released', y='dur', markers=True, labels={"dur": "Average Song Duaration (seconds)", "year released": "Year"}, title="Average Duration of Songs Over Time")
-    
-    plt.savefig('laksdjbf', bbox_inches="tight")
-    
-    fig.show()
+
+    px.line(
+        mean_dur, x='year released', y='dur', markers=True, 
+        labels={"dur": "Average Song Duaration (seconds)", 
+        "year released": "Year"}, title="Average Duration of Songs Over Time")
+    px.savefig('laksdjbf', bbox_inches="tight")
+
+    px.show()
 
 
 def spotify_2010_2019_plot(df):
@@ -146,12 +136,11 @@ def main():
     df2 = pd.read_csv(data2, sep='#', header=None)
     df = pd.read_csv(top_100, encoding='latin-1')
 
-    # loading_data(df1, df2)
-    # load_in_data(df1, df2)
-    #plot1(df1)
     top_fast_genre(df1)
     mean_dur_bpm_in_group_type(df1)
     popular_streamers(df2)
+    stream_distributions(df2)
+    testing_violin_graph(df2)
     average_duration_per_year(df)
     spotify_2010_2019_plot(df1)
 
