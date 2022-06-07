@@ -94,6 +94,28 @@ def funnel_graph(df):
     px.funnel(k, x='Track Name', y='Streams', color='Artist')
 
 
+def average_duration_per_year(df):
+    """
+    Method takes a dataframe and filters the music from the years 2010 through 2019. 
+    Muisc is grouped by the year it was released ("year released") and then
+    and the avaerage of song durations is calcualted for every year. 
+    With plotly.express, a line plot is created ro showcase the connection
+    between the average song duration in seconds for every year between 2010
+    and 2019.
+    """
+    years_2010 = df['year released'] >= 2010
+    years_2019 = df['year released'] <= 2019
+    data = df[years_2010 & years_2019]
+    mean_dur = data.groupby('year released', as_index=False)['dur'].mean()
+    
+    fig = px.line(
+        mean_dur, x='year released', y='dur', markers=True, labels={"dur": "Average Song Duaration (seconds)", "year released": "Year"}, title="Average Duration of Songs Over Time")
+    
+    plt.savefig('laksdjbf', bbox_inches="tight")
+    
+    fig.show()
+
+
 def spotify_2010_2019_plot(df):
     """
     Filters music from years 2010 to 2019 from spotify, then it groups them
@@ -122,6 +144,7 @@ def main():
     # read datasets => dataframe
     df1 = pd.read_csv(top_100, on_bad_lines='skip')
     df2 = pd.read_csv(data2, sep='#', header=None)
+    df = pd.read_csv(top_100, encoding='latin-1')
 
     # loading_data(df1, df2)
     # load_in_data(df1, df2)
@@ -129,6 +152,7 @@ def main():
     top_fast_genre(df1)
     mean_dur_bpm_in_group_type(df1)
     popular_streamers(df2)
+    average_duration_per_year(df)
     spotify_2010_2019_plot(df1)
 
 if __name__ == '__main__':
